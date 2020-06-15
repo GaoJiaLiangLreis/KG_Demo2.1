@@ -20,7 +20,7 @@
 
     var myChart = echarts.init(document.getElementById('main'));
     myChart.showLoading();
-    $.get('./KG2.1.1.gexf', function (xml) {
+    $.get('./KG2.1.gexf', function (xml) {
         myChart.hideLoading();
         var graph = echarts.dataTool.gexf.parse(xml);
         var categories = {};
@@ -125,7 +125,7 @@
     function button_onclick(){
         layout_show = 'circular';
         curveness = '0.3';
-            $.get('./KG2.1.1.gexf', function (xml) {
+            $.get('./KG2.1.gexf', function (xml) {
         myChart.hideLoading();
         var graph = echarts.dataTool.gexf.parse(xml);
         var categories = {};
@@ -228,7 +228,7 @@
     function button_onclick2(){
         layout_show = 'force';
         curveness = '0.0';
-            $.get('./KG2.1.1.gexf', function (xml) {
+            $.get('./KG2.1.gexf', function (xml) {
         myChart.hideLoading();
         var graph = echarts.dataTool.gexf.parse(xml);
         var categories = {};
