@@ -23,7 +23,7 @@
     $.get('./KG2.1.gexf', function (xml) {
         myChart.hideLoading();
         var graph = echarts.dataTool.gexf.parse(xml);
-        var categories = {};
+        var categories = [{name: "attraction"}, {name: "user"}, {name: "label"}]
 
         graph.nodes.forEach(function (node) {
             node.itemStyle = null;
@@ -36,7 +36,6 @@
                 }
             };
             node.category = node.attributes.type;
-            categories[node.category] = 1;
         });
         var option = {
             title: {
@@ -73,7 +72,10 @@
             legend: [{
                 // selectedMode: 'single',
                 // data: Object.keys(categories)
-                data: Object.keys(categories)
+				// selectedMode: 'single',
+					data: categories.map(function(a) {
+						return a.name;
+						})
             }],
             animationDuration: 1500,
             animationEasingUpdate: 'quinticInOut',
@@ -88,9 +90,7 @@
                 },
                     data: graph.nodes,
                     links: graph.links,
-                    categories: Object.keys(categories).map(i => ({
-                        name: i
-                    })),
+                    categories: categories,
                     roam: true,
                     focusNodeAdjacency: true,
                     itemStyle: {
